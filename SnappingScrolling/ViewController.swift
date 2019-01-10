@@ -62,9 +62,11 @@ extension ViewController: UICollectionViewDelegate {
         
         print("targetContentOffset.pointee.x: \(targetContentOffset.pointee.x)")
         
-        var targetIndex = (targetContentOffset.pointee.x + scrollView.bounds.width / 2 - cellSize.width / 2 - insetSpacing) / cellSize.width
+        var targetIndex = (targetContentOffset.pointee.x) / cellSize.width
+        print("targetIndex: \(targetIndex)")
+        print("velocity.x: \(velocity.x)")
         targetIndex = velocity.x > 0 ? ceil(targetIndex) : floor(targetIndex)
-        targetContentOffset.pointee.x = targetIndex * cellSize.width - scrollView.bounds.width / 2 + cellSize.width / 2 + insetSpacing
+        targetContentOffset.pointee.x = targetIndex * cellSize.width
         
         print(targetIndex)
         targetIndexLabel.text = "\(Int(targetIndex))"
