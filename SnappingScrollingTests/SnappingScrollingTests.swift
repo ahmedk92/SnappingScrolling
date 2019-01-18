@@ -19,9 +19,31 @@ class SnappingScrollingTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testNoClamp() {
+        let value: CGFloat = 100
+        let minValue: CGFloat = 0
+        let maxValue: CGFloat = 200
+        
+        XCTAssert(value >= minValue && value <= maxValue)
+        XCTAssertEqual(value.clamped(minValue: minValue, maxValue: maxValue), 100)
+    }
+    
+    func testClampMin() {
+        let value: CGFloat = -1
+        let minValue: CGFloat = 0
+        let maxValue: CGFloat = 200
+        
+        XCTAssert(value < minValue)
+        XCTAssertEqual(value.clamped(minValue: minValue, maxValue: maxValue), minValue)
+    }
+    
+    func testClampMax() {
+        let value: CGFloat = 201
+        let minValue: CGFloat = 0
+        let maxValue: CGFloat = 200
+        
+        XCTAssert(value > maxValue)
+        XCTAssertEqual(value.clamped(minValue: minValue, maxValue: maxValue), maxValue)
     }
 
     func testPerformanceExample() {

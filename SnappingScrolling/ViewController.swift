@@ -66,6 +66,7 @@ extension ViewController: UICollectionViewDelegate {
         print("targetIndex: \(targetIndex)")
         print("velocity.x: \(velocity.x)")
         targetIndex = velocity.x > 0 ? ceil(targetIndex) : floor(targetIndex)
+        targetIndex = targetIndex.clamped(minValue: 0, maxValue: CGFloat(data.count - 1))
         targetContentOffset.pointee.x = targetIndex * cellSize.width
         
         print(targetIndex)
@@ -86,6 +87,12 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: insetSpacing, bottom: 0, right: insetSpacing)
+    }
+}
+
+extension CGFloat {
+    func clamped(minValue: CGFloat, maxValue: CGFloat) -> CGFloat {
+        return Swift.min(maxValue, Swift.max(minValue, self))
     }
 }
 
