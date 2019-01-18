@@ -62,7 +62,7 @@ extension ViewController: UICollectionViewDelegate {
         
         print("targetContentOffset.pointee.x: \(targetContentOffset.pointee.x)")
         
-        var targetIndex = (targetContentOffset.pointee.x) / cellSize.width
+        var targetIndex = (targetContentOffset.pointee.x + cellSize.width / 2) / cellSize.width
         print("targetIndex: \(targetIndex)")
         print("velocity.x: \(velocity.x)")
         targetIndex = velocity.x > 0 ? ceil(targetIndex) : floor(targetIndex)
